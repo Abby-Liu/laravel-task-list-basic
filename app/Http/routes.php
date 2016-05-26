@@ -49,6 +49,12 @@ Route::group(['middleware' => ['web']], function () {
                 ->withInput()
                 ->withErrors($validator);
         }
+
+        $task = new Task;
+        $task->name = $request->name;
+        $task->save();
+
+        return redirect('/');
 	});
 
 
