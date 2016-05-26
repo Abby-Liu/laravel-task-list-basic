@@ -26,7 +26,9 @@ Route::group(['middleware' => ['web']], function () {
      */
      Route::get('/', function () {
          $task = Task::orderBy('created_at', 'asc')->get();
-         return view('tasks', [ 'task' => $tasks ]);
+         return view('tasks', [
+             'tasks' => $task
+         ]);
      });
 
      /**
@@ -62,6 +64,8 @@ Route::group(['middleware' => ['web']], function () {
 	 * Delete an exited task.
 	 */
 	Route::delete('task/{task}', function(Task $task){
-        //
+        $task->delete();
+
+        return redirect('/');
 	});
 });

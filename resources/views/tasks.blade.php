@@ -12,19 +12,23 @@
         <form action="/task" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
-            <!-- 任務名稱 -->
+            <tr>
+            <!-- 顯示任務名稱 -->
             <div class="form-group">
-                <label for="task" class="col-sm-3 control-label">Task</label>
+                <label for="task" class="col-sm-3 control-label">Write Down Your Task Which You Want to Finish</label>
 
                 <div class="col-sm-6">
                     <input type="text" name="name" id="task-name" class="form-control">
                 </div>
             </div>
 
+
+
+        </tr>
             <!-- 增加任務按鈕-->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
+                    <button type="submit" class="btn btn-success">
                         <i class="fa fa-plus"></i> 增加任務
                     </button>
                 </div>
@@ -50,7 +54,7 @@
 
                     <!-- 表身 -->
                     <tbody>
-                        @foreach ($task as $task)
+                        @foreach ($tasks as $task)
                         <tr>
                             <!-- 任務名稱 -->
                             <td class="table-text">
@@ -59,10 +63,20 @@
                                 </div>
                             </td>
 
-                            <!-- 待辦：刪除按鈕-->
+                            <!-- 刪除任務按鈕 -->
+                            <td>
+                                <form action="/task/{{ $task->id }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <button>刪除任務</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
             </table>
 
         </div>
-        @endif
+    @endif
 @endsection
