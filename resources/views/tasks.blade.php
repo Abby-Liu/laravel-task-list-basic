@@ -45,7 +45,7 @@
                     <!-- 表頭 -->
                     <thead>
                         <th>Task</th>
-                        <th>&nbsp</th>
+                        <th>&nbsp;</th>
                     </thead>
 
                     <!-- 表身 -->
