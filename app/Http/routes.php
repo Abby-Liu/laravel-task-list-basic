@@ -25,10 +25,10 @@ Route::group(['middleware' => ['web']], function () {
      * Show Task Dashboard
      */
      Route::get('/', function () {
-         return view('tasks', [
-             'tasks' => Task::orderBy('created_at', 'asc')->get()
-         ]);
+         'tasks' => Task::orderBy('created_at', 'asc')->get();
+         return view('tasks', [ 'task' => $tasks ]);
      });
+     
      /**
      * Show all tasks.
      */
