@@ -40,7 +40,15 @@ Route::group(['middleware' => ['web']], function () {
     * 如果驗證失敗，我們會將使用者導回 / URL，並將舊的輸入和錯誤訊息輸入至session
  	*/
 	Route::post('/task', function(Request $request){
-        //
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|max:255',
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
 	});
 
 
